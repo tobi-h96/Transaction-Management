@@ -1,8 +1,12 @@
 package de.fhdw.tm.trafficlight;
 
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 import de.fhdw.tm.des.modelling.ModelProcess;
 import de.fhdw.tm.des.scheduler.DESScheduler;
 import de.fhdw.tm.des.scheduler.Simulation;
+import de.fhdw.tm.des.scheduler.SimulationResult;
 import de.fhdw.tm.des.scheduler.Simulator;
 
 public class CrossingSimulation {
@@ -10,7 +14,7 @@ public class CrossingSimulation {
 
 		DESScheduler.setDebug(true);
 
-		Simulator simulator = new Simulator();
+		Simulator simulator = new Simulator(42);
 
 		Simulation sim = new Simulation() {
 
@@ -35,6 +39,16 @@ public class CrossingSimulation {
 			simulator.simulate(sim);
 		}
 		simulator.terminate();
+		try {
+			List<SimulationResult> simulationResult = simulator.readResults();
+			simulationResult.forEach(x -> x.printResults());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 }

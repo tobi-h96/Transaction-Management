@@ -26,15 +26,15 @@ public abstract class SimulationEvaluatorWithStore extends SimulationEvaluator {
 		return result;
 	}
 	
-	protected void addData(double value) {
+	public void addData(double value) {
 		this.data.addElement(value);
 	}
 	
-	protected void addData(int value) {
+	public void addData(int value) {
 		this.data.addElement(value);
 	}
 	
-	protected void addData(long value) {
+	public void addData(long value) {
 		this.data.addElement(value);
 	}
 

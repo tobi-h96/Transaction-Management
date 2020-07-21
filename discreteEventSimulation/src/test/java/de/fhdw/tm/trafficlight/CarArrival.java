@@ -24,7 +24,8 @@ public class CarArrival {
 
 	@ProcessStep(0)
 	public void nextCar() {
-		this.trafficLight.carArrives();
+		Car newCar = new Car(DESScheduler.getSimulationTime());
+		this.trafficLight.carArrives(newCar);
 		DESScheduler.scheduleToFuture(new ModelProcess(this), (long) this.distribution.sample());
 	}
 }
